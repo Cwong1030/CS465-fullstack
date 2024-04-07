@@ -1,9 +1,11 @@
-var fs = require('fs');
-var info = JSON.parse(fs.readFileSync('app_server/data/contact.json', 'utf8'));
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const contactInfo = JSON.parse(fs.readFileSync('app_server/data/contact.json', 'utf8'));
 
 /* GET contact view. */
 const contact = (req, res) => {
-    res.render('contact', { title: 'Travlr Contact', contact});
+    pageTitle = packageJson.description + ' | Contact';
+    res.render('contact', { activePage: 'contact', title: pageTitle, contactInfo });
 };
 
 module.exports = {

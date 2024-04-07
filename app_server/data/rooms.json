@@ -4,23 +4,23 @@
         "link": "/rooms",
         "image": "first-class.jpg",
         "alt": "Img",
-        "description": "Cras dui sapien, feugiat vitae tristique ut, lobortis tempor orci. Donec pulvinar sagittis metus ut tristique. Pellentes que habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas idios.",
+        "description": "Experience unparalleled luxury in our First Class Rooms. Immerse yourself in refined elegance and supreme comfort, where every detail is meticulously crafted to exceed your expectations.",
         "rate": "220 / Day"  
-    },
-    {
-        "name": "Deluxe Room",
-        "link": "/rooms",
-        "image": "deluxe.jpg",
-        "alt": "Img",
-        "description": "Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida. Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis.",
-        "rate": "150 / Day"  
     },
     {
         "name": "Suite Room",
         "link": "/rooms",
         "image": "suite.jpg",
         "alt": "Img",
-        "description": "Sed et augue lorem. In sit amet placerat arcu. Mauris volutpat ipsum ac justo mollis vel vestibulum orci gravida. Vestibulum sit amet porttitor odio. Nulla facilisi. Fusce at pretium felis.",
-        "rate": "180 / Day"
+        "description": "Indulge in the epitome of sophistication with our Suite Rooms. From expansive living spaces to panoramic views of the surrounding landscape, elevate your stay to new heights of opulence and grandeur.",
+        "rate": "180 / Day" 
+    },
+    {
+        "name": "Deluxe Room",
+        "link": "/rooms",
+        "image": "deluxe.jpg",
+        "alt": "Img",
+        "description": "Discover comfort redefined in our Deluxe Rooms. Thoughtfully designed and tastefully appointed, these rooms offer a perfect blend of style and functionality, ensuring a restful and rejuvenating retreat.",
+        "rate": "150 / Day"
     }
 ]

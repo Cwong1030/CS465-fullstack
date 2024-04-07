@@ -1,9 +1,11 @@
-var fs = require('fs');
-var info = JSON.parse(fs.readFileSync('app_server/data/about.json', 'utf8'));
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const info = JSON.parse(fs.readFileSync('app_server/data/about.json', 'utf8'));
 
 /* GET about view. */
 const about = (req, res) => {
-    res.render('about', { title: 'Travlr About', about});
+    pageTitle = packageJson.description + ' | About';
+    res.render('about', { activePage: 'about', title: pageTitle, info });
 };
 
 module.exports = {

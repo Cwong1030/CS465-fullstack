@@ -4,20 +4,20 @@
         "link": "/meals",
         "image": "seafoods.jpg",
         "alt": "Img",
-        "description": "<span>Fried Salmon Special</span> I'm a product overview. Here you can write more information about your product. Buyers like to know ..."
+        "description": "<span>Fried Salmon Special</span> Savor the irresistible Fried Salmon Special - a tantalizing dish bursting with flavor."
     },
     {
         "name": "Sumptuous Desserts",
         "link": "/meals",
         "image": "desserts.jpg",
         "alt": "Img",
-        "description": "<span>Choco Ice Cream Sandwich</span> I'm a product overview. Here you can write more information about your product. Buyers like to know ..."
+        "description": "<span>Choco Ice Cream Sandwich</span> Indulge in our Choco Ice Cream Sandwich - a delightful treat featuring rich chocolate ice cream sandwiched between two soft cookies, perfect for satisfying your sweet cravings."
     },
     {
         "name": "Buffet",
         "link": "/meals",
         "image": "buffet.jpg",
         "alt": "Img",
-        "description": "<span>Mixed Buffet</span> I'm a product overview. Here you can write more information about your product. Buyers like to know ..."
+        "description": "<span>Mixed Buffet</span> Savor the diverse flavors of our Mixed Buffet, offering an array of culinary delights to please every palate and satisfy your hunger with a variety of delicious options."
     }
 ]
