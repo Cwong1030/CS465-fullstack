@@ -1,8 +1,8 @@
 // Bring in the DB connection and the Trip Schema
-const Mongoose = require('./db');
-const Meals = require('../models/meals');
-const News = require('../models/news');
-const Rooms = require('../models/rooms');
+const Mongoose = require('../db');
+const Meals = require('./meals');
+const News = require('./news');
+const Rooms = require('./rooms');
 const Trip = require('./travlr');
 
 // Read seed data from json file
