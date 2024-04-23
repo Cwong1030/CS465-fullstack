@@ -1,10 +1,10 @@
-import { RouterModule, Routes } from '@angular/router';
+import { /* RouterModule, */ Routes } from '@angular/router';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { TripListingComponent } from './trip-listing/trip-listing.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { NgModule } from '@angular/core';
+// import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
     { path: 'add-trip', component: AddTripComponent },
@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' }
 ];
 
-@NgModule({
+/* @NgModule({
     imports: [
       RouterModule.forRoot(routes),
     ],
@@ -22,4 +22,4 @@ export const routes: Routes = [
       RouterModule
     ]
   })
-  export class AppRoutingModule { }
+  export class AppRoutingModule { } */

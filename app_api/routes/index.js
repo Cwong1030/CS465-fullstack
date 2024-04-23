@@ -59,12 +59,12 @@ router
 router
     .route('/trips')
     .get(travelController.tripsList)
-    .post(travelController.tripsAddTrip);
+    .post(auth, travelController.tripsAddTrip);
 
 // Route to find and return a single trip by trip code
 router
     .route('/trips/:tripCode')
     .get(travelController.tripsFindCode)
-    .put(travelController.tripsUpdateTrip);
+    .put(auth, travelController.tripsUpdateTrip);
 
 module.exports = router;

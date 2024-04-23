@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+/* import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -40,4 +40,4 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule { } */

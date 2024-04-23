@@ -25,7 +25,6 @@ export class EditTripComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Retrieve stashed trip ID
     let tripCode = localStorage.getItem("tripCode");
     if (!tripCode) {
       alert("Something wrong, couldn't find where I stashed tripCode!");
@@ -34,6 +33,7 @@ export class EditTripComponent implements OnInit {
     }
     console.log('EditTripComponent::ngOnInit');
     console.log('tripcode:' + tripCode);
+    
     this.editForm = this.formBuilder.group({
       _id: [],
       code: [tripCode, Validators.required],
@@ -50,17 +50,12 @@ export class EditTripComponent implements OnInit {
       .subscribe({
         next: (value: any) => {
           this.trip = value;
-          // Populate our record into the form
           this.editForm.patchValue(value[0]);
-          if (!value) {
-            this.message = 'No Trip Retrieved!';
-          } else {
-            this.message = 'Trip: ' + tripCode + ' retrieved';
-          }
+          this.message = value ? `Trip: ${tripCode} retrieved` : 'No Trip Retrieved!';
           console.log(this.message);
         },
         error: (error: any) => {
-          console.log('Error: ' + error);
+          console.log('Error:', error);
         }
       });
   }
@@ -75,13 +70,13 @@ export class EditTripComponent implements OnInit {
             this.router.navigate(['']);
           },
           error: (error: any) => {
-            console.log('Error: ' + error);
+            console.error('Failed to update trip:', error);
+            this.message = 'Failed to update trip. Please try again!';
+            alert(this.message);
           }
         });
     }
   }
 
-  // get the form short name to access the form fields
   get f() { return this.editForm.controls; }
-
 }

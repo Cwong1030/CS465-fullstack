@@ -18,7 +18,7 @@ export class AddTripComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private tripService: TripDataService
+        private tripDataService: TripDataService
     ) { }
 
     ngOnInit() {
@@ -37,20 +37,21 @@ export class AddTripComponent implements OnInit {
 
     public onSubmit() {
         this.submitted = true;
-
         if (this.addForm.valid) {
-            this.tripService.addTrip(this.addForm.value)
-                .subscribe({
-                    next: (data: any) => {
-                        console.log(data);
-                        this.router.navigate(['']);
-                    },
-                    error: (error: any) => {
-                        console.log('Error: ' + error);
-                    }
-                });
+          this.tripDataService.addTrip(this.addForm.value)
+            .subscribe({
+              next: (data: any) => {
+                console.log(data);
+                this.router.navigate(['']);
+              },
+              error: (error: any) => {
+                console.error('Failed to add trip:', error);
+                alert('Failed to add trip. Please check your inputs and try again!');
+              }
+            });
         }
-    }
+      }
+      
 
     // get the form short name to access the form fields
     get f() { return this.addForm.controls; }
