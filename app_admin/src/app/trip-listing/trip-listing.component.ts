@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TripCardComponent } from '../trip-card/trip-card.component';
+import { AuthenticationService } from "../services/authentication.service";
 
 import { Trip } from '../models/trip'
 import { TripDataService } from '../services/trip-data.service';
@@ -18,10 +19,11 @@ import { Router } from '@angular/router';
 
 export class TripListingComponent implements OnInit {
   trips!: Trip[];
-  message: string = '';
+  message!: string;
 
   constructor(
     private tripDataService: TripDataService,
+    private authenticationService: AuthenticationService,
     private router: Router
     ) { 
     console.log('trip-listing constructor');
@@ -50,9 +52,13 @@ export class TripListingComponent implements OnInit {
       });
   }
 
-    ngOnInit(): void {
-      console.log('ngOnInit');
-      this.getTrips();
-    }
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+    this.getTrips();
+  }
 
 }

@@ -1,12 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const { expressjwt: jwt } = require('express-jwt');
 
+const auth = jwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'payload',
+    algorithms: ['HS256']
+});
+
+const authController = require('../controllers/authentication');
 const mealsController = require('../controllers/meals');
 const newsController = require('../controllers/news');
 const roomsController = require('../controllers/rooms');
 const travelController = require('../controllers/travel');
 
 // API routes
+// Route to authenticate a user
+router
+    .route('/login')
+    .post(authController.login);
+
+// Route to register a new user
+router
+    .route('/register')
+    .post(authController.register);
+
 // Route to get a list of all meals
 router
     .route('/meals')
@@ -40,7 +58,7 @@ router
 // Route to get a list of all trips
 router
     .route('/trips')
-    .get(travelController.tripList)
+    .get(travelController.tripsList)
     .post(travelController.tripsAddTrip);
 
 // Route to find and return a single trip by trip code

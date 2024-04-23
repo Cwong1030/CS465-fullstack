@@ -63,9 +63,10 @@ process.on('SIGTERM', () => {
 connect();
 
 // Import Mongoose schema
-require('../models/meals');
-require('../models/news');
-require('../models/rooms');
-require('../models/travlr');
+require('./models/user');
+require('./models/meals');
+require('./models/news');
+require('./models/rooms');
+require('./models/travlr');
 
 module.exports = mongoose;
