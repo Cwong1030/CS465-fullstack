@@ -42,7 +42,9 @@ const login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       console.error('Error during authentication:', err); // Log the error
-      return res.status(500).json({ message: 'Internal Server Error' });
+      return res
+        .status(500)
+        .json({ message: 'Internal Server Error' });
     }
     if (!user) {
       return res
