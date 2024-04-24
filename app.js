@@ -57,7 +57,7 @@ app.use('/api', apiRouter);
 
 // catch unauthorized error and create 401
 app.use((err, req, res, next) => {
-  if (err.name == 'UnauthorizedError') {
+  if (err.name === 'UnauthorizedError') {
     res
       .status(401)
       .json({"message": err.name + ": " + err.message});
