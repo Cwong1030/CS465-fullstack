@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { BROWSER_STORAGE } from '../storage';
 import { User } from '../models/user';
 import { AuthResponse } from '../models/authresponse';
-import { TripDataService } from './trip-data.service'; // Corrected import path
+import { TripDataService } from './trip-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class AuthenticationService {
       .then((authResp: AuthResponse) => this.saveToken(authResp.token))
       .catch((error: any) => {
         console.error('Login failed:', error);
-        throw error; // Re-throw the error for further handling if needed
+        throw error;
       });
   }
 
@@ -36,7 +36,7 @@ export class AuthenticationService {
       .then((authResp: AuthResponse) => this.saveToken(authResp.token))
       .catch((error: any) => {
         console.error('Registration failed:', error);
-        throw error; // Re-throw the error for further handling if needed
+        throw error;
       });
   }
 

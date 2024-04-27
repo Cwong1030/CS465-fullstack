@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { firstValueFrom } from 'rxjs';
 
@@ -29,11 +29,18 @@ export class TripDataService {
   }
 
   public getTrip(tripCode: string): Observable<Trip> {
-    return this.httpClient.get<Trip>(`${this.apiBaseUrl}/trips/${tripCode}`);
+    return this.httpClient
+    .get<Trip>(`${this.apiBaseUrl}/trips/${tripCode}`);
   }
 
   public updateTrip(formData: Trip): Observable<Trip> {
-    return this.httpClient.put<Trip>(`${this.apiBaseUrl}/trips/${formData.code}`, formData);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.storage.getItem('travlr-token')}`
+      })
+    };
+    return this.httpClient
+    .put<Trip>(`${this.apiBaseUrl}/trips/${formData.code}`, formData, httpOptions);
   }
 
   public login(user: User): Promise<AuthResponse> {
@@ -44,15 +51,19 @@ export class TripDataService {
     return this.makeAuthApiCall('register', user);
   }
 
-  private async makeAuthApiCall(urlPath: string, user: User): Promise<AuthResponse> {
+  private handleError(error: any): Promise<any> {
+    console.error('Something has gone wrong', error);
+    return Promise.reject(error.message || error);
+  }
+
+  private makeAuthApiCall(urlPath: string, user: User):
+  Promise<AuthResponse> {                                    
     const url: string = `${this.apiBaseUrl}/${urlPath}`;
-    try {
-      const response = await firstValueFrom(this.httpClient.post<AuthResponse>(url, user));
-      return response;
-    } catch (error) {
-      console.error('Error making auth API call:', error);
-      throw error; // Re-throw the error for further handling if needed
-    }
-  } 
+    return this.httpClient
+      .post(url, user)                                         
+      .toPromise()                                             
+      .then(response => response as AuthResponse)
+      .catch(this.handleError);
+  }
   
 }
