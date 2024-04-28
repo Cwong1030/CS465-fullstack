@@ -64,49 +64,42 @@ const tripsAddTrip = async (req, res) => {
    
 // PUT: changes a single trip
 const tripsUpdateTrip = async (req, res) => {
-    getUser(req, res, async (req, res) => {
-        try {
-            const updatedTrip = await Trip.findOneAndUpdate(
-                { 'code': req.params.tripCode },
-                {
-                    code: req.body.code,
-                    name: req.body.name,
-                    length: req.body.length,
-                    start: req.body.start,
-                    resort: req.body.resort,
-                    perPerson: req.body.perPerson,
-                    image: req.body.image,
-                    description: req.body.description
-                },
-                { new: true }
-            );
+    try {
+        // Assuming getUser is an async function
+        const user = await getUser(req, res);
+        
+        // Proceed with update if user is authenticated
+        const updatedTrip = await Trip.findOneAndUpdate(
+            { 'code': req.params.tripCode },
+            {
+                code: req.body.code,
+                name: req.body.name,
+                length: req.body.length,
+                start: req.body.start,
+                resort: req.body.resort,
+                perPerson: req.body.perPerson,
+                image: req.body.image,
+                description: req.body.description
+            },
+            { new: true }
+        );
 
-            if (!updatedTrip) {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                });
-            }
-
-            res
-                .send(updatedTrip);
-        } catch (err) {
-            if (err.kind === 'ObjectId') {
-                return res
-                    .status(404)
-                    .send({
-                        message: "Trip not found with code " + req.params.tripCode
-                });
-            }
-            return res
-                .status(500)
-                .json(err);
+        if (!updatedTrip) {
+            return res.status(404).send({
+                message: "Trip not found with code " + req.params.tripCode
+            });
         }
-    });
+
+        res.send(updatedTrip);
+    } catch (err) {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Trip not found with code " + req.params.tripCode
+            });
+        }
+        return res.status(500).json(err);
+    }
 };
-
-
 
 
 const getUser = async (req, res) => {

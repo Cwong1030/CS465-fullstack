@@ -37,46 +37,56 @@ export class EditTripComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       _id: [],
       code: [tripCode, Validators.required],
-      name: ["", Validators.required],
-      length: ["", Validators.required],
-      start: ["", Validators.required],
-      resort: ["", Validators.required],
-      perPerson: ["", Validators.required],
-      image: ["", Validators.required],
+      name: ['', Validators.required],
+      length: ['', Validators.required],
+      start: ['', Validators.required],
+      resort: ['', Validators.required],
+      perPerson: ['', Validators.required],
+      image: ['', Validators.required],
       description: ['', Validators.required]
     });
-
+      
     this.tripDataService.getTrip(tripCode)
       .subscribe({
         next: (value: any) => {
           this.trip = value;
+          // Populate our record into the form
           this.editForm.patchValue(value[0]);
-          this.message = value ? `Trip: ${tripCode} retrieved` : 'No Trip Retrieved!';
+          if(!value)
+          {
+            this.message = 'No Trip Retrieved!';
+          }
+          else{
+            this.message = 'Trip: ' + tripCode + ' retrieved';
+          }
           console.log(this.message);
         },
         error: (error: any) => {
-          console.log('Error:', error);
+          console.log('Error: ' + error);
         }
-      });
+      })
   }
-
+    
   public onSubmit() {
     this.submitted = true;
+  
     if (this.editForm.valid) {
+      // Submitting valid form data
       this.tripDataService.updateTrip(this.editForm.value)
         .subscribe({
           next: (value: any) => {
-            console.log(value);
+            // Log successful update response
+            console.log('Update successful:', value);
+            // Redirect to home page after successful update
             this.router.navigate(['']);
           },
           error: (error: any) => {
-            console.error('Failed to update trip:', error);
-            this.message = 'Failed to update trip. Please try again!';
-            alert(this.message);
+            // Log error details for debugging
+            console.error('Update error:', error);
           }
         });
     }
-  }
-
+  } 
+  // get the form short name to access the form fields
   get f() { return this.editForm.controls; }
 }
